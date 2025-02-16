@@ -5,11 +5,13 @@ services:
       context: .
     container_name: avito-shop
     depends_on:
-      postgresql:
+      postgres:
         condition: service_healthy  
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
     environment:
+      SECRET: asdjqhuiqw43289zxcMASas
+      CONFIG_PATH: ./config/config.yaml
       SERVER_ADDRESS: ${SERVER_ADDRESS}
       SERVER_PORT: ${SERVER_PORT}
       POSTGRES_CONN: ${POSTGRES_CONN}
@@ -24,7 +26,7 @@ services:
     networks:
       - backend-network
 
-  postgresql: 
+  postgres: 
     image: postgres:14-alpine   
     container_name: postgres
     environment:

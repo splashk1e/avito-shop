@@ -7,7 +7,7 @@ CREATE TABLE users (
 );
 CREATE TABLE transactions (
     id SERIAL PRIMARY KEY,         
-    receiver VARCHAR(255) NOT NULL
+    receiver VARCHAR(255) NOT NULL,
     sender VARCHAR(255) NOT NULL,  
     amount INT NOT NULL,           
     item VARCHAR(255),            

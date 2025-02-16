@@ -1,7 +1,7 @@
 package main
 
 import (
-	"flag"
+	"fmt"
 	"log/slog"
 	"os"
 	"os/signal"
@@ -12,12 +12,12 @@ import (
 )
 
 func main() {
-	var secret string
-	flag.StringVar(&secret, "secret", "asdasdqw12fcxv4aSA3", "secret string for jwt")
+	secret := os.Getenv("SECRET")
 	cfg := config.MustLoad()
 	log := setupLogger(cfg.Env)
 	log.Info("starting application", slog.String("env", cfg.Env))
 	application := app.New(log, cfg.Port)
+	fmt.Print(cfg.Storagepath)
 	go application.Run(cfg.Storagepath, secret, cfg.TokenTTL)
 	stop := make(chan os.Signal, 1)
 	signal.Notify(stop, syscall.SIGINT, syscall.SIGTERM)

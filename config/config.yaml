@@ -1,4 +1,4 @@
 port: "8080"
 tokenttl: "12h"
-storage_path: ""
+storage_path: "postgres://postgres:avito-shop@postgres:5432/postgres?sslmode=disable"
 env: "dev"
